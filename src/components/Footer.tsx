@@ -11,16 +11,13 @@ export default function Footer() {
         <div className="flex flex-col gap-4">
           <h5 className="font-sans text-[12px] uppercase tracking-widest text-primary mb-2 font-bold">Navigation</h5>
           <div className="flex flex-col gap-3 font-sans text-[12px] uppercase tracking-widest">
-            <a className="opacity-60 hover:opacity-100 transition-opacity duration-500 text-primary" href="#">Private Parties</a>
-            <a className="opacity-60 hover:opacity-100 transition-opacity duration-500 text-primary" href="#">Restaurants</a>
             <a className="opacity-60 hover:opacity-100 transition-opacity duration-500 text-primary" href="#">Classes</a>
           </div>
         </div>
         <div className="flex flex-col gap-4">
           <h5 className="font-sans text-[12px] uppercase tracking-widest text-primary mb-2 font-bold">Connect</h5>
           <div className="flex flex-col gap-3 font-sans text-[12px] uppercase tracking-widest">
-            <a className="opacity-60 hover:opacity-100 transition-opacity duration-500 text-primary" href="#">Instagram</a>
-            <a className="opacity-60 hover:opacity-100 transition-opacity duration-500 text-primary" href="#">Privacy</a>
+            <a className="opacity-60 hover:opacity-100 transition-opacity duration-500 text-primary" href="https://www.instagram.com/yumyuckers_ent/" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
         </div>
       </div>

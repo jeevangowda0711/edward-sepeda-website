@@ -3,7 +3,7 @@ import { Droplets, Pill, Sun, Sprout } from 'lucide-react';
 
 export default function Booking() {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -13,15 +13,15 @@ export default function Booking() {
         {/* Hero Section / Context */}
         <div className="mb-24 flex flex-col md:flex-row items-start gap-12">
           <div className="md:w-2/3">
-            <motion.h1 
+            <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
               className="font-serif text-5xl md:text-6xl italic leading-tight mb-8"
             >
-              Crafting your <br/>personal elixir.
+              Crafting your <br />personal elixir.
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -31,15 +31,15 @@ export default function Booking() {
             </motion.p>
           </div>
           <div className="md:w-1/3 flex justify-end">
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="w-48 h-64 bg-surface-container overflow-hidden rounded-xl border border-outline-variant/15"
             >
-              <img 
-                alt="A moody crystal glass with botanical garnishes" 
-                className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-1000" 
+              <img
+                alt="A moody crystal glass with botanical garnishes"
+                className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-1000"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6qqnOTi1-K6JWfpv8sh-pgHiF0BWgqIp5VpJ68Fv34TmBBYIzmOsb7L9rvFvaULVLCwbbaqRORCPjbhE9IqK4LS7jJZN7ZovzxPE6YzZGgeNPhD7nc5I9Ij7ivakAitDL7qD5-II3BbuI8fmOeeI1O2BMJc6T_ZrU0et03uSvSFXYhkEq89BGZhKZ8A9b7Ulm3aX6TNTsxEwukI1WJr644wzM9wNceEPYoqmbcs-sUp8SHgtA3wXK_75w1OgyHnSXa2y6iVz6s6pt"
                 referrerPolicy="no-referrer"
               />
@@ -48,7 +48,7 @@ export default function Booking() {
         </div>
 
         {/* Form Container */}
-        <motion.section 
+        <motion.section
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -62,16 +62,13 @@ export default function Booking() {
                 <div className="relative">
                   <select className="appearance-none w-full bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all cursor-pointer">
                     <option disabled selected value="">Select experience...</option>
-                    <option value="private_party">Private Party</option>
                     <option value="mixology_class">Mixology Class</option>
-                    <option value="corporate_event">Corporate Event</option>
-                    <option value="dinner_pairing">Curated Dinner Pairing</option>
                   </select>
                 </div>
               </div>
               <div className="flex flex-col gap-2 group">
                 <label className="font-sans text-xs uppercase tracking-[0.2em] text-primary/60 group-focus-within:text-primary transition-colors">Preferred Date</label>
-                <input className="bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all" type="date"/>
+                <input className="bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all" type="date" />
               </div>
             </div>
 
@@ -79,11 +76,11 @@ export default function Booking() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="flex flex-col gap-2 group">
                 <label className="font-sans text-xs uppercase tracking-[0.2em] text-primary/60 group-focus-within:text-primary transition-colors">Host Name</label>
-                <input className="bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all placeholder:text-outline-variant/40" placeholder="Edward Sepeda" type="text"/>
+                <input className="bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all placeholder:text-outline-variant/40" placeholder="Edward Sepeda" type="text" />
               </div>
               <div className="flex flex-col gap-2 group">
                 <label className="font-sans text-xs uppercase tracking-[0.2em] text-primary/60 group-focus-within:text-primary transition-colors">Email Address</label>
-                <input className="bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all placeholder:text-outline-variant/40" placeholder="host@example.com" type="email"/>
+                <input className="bg-transparent border-0 border-b border-outline-variant/40 focus:ring-0 focus:border-primary px-0 py-3 text-lg font-sans transition-all placeholder:text-outline-variant/40" placeholder="host@example.com" type="email" />
               </div>
             </div>
 
@@ -114,7 +111,7 @@ export default function Booking() {
                   { label: "Herbal", icon: <Sprout size={20} /> }
                 ].map((flavor, i) => (
                   <label key={i} className="relative group cursor-pointer">
-                    <input className="peer hidden" name="flavor" type="checkbox" value={flavor.label.toLowerCase()}/>
+                    <input className="peer hidden" name="flavor" type="checkbox" value={flavor.label.toLowerCase()} />
                     <div className="bg-surface border border-outline-variant/20 peer-checked:bg-primary-container peer-checked:text-white p-6 rounded-lg transition-all duration-400 flex flex-col items-center gap-3">
                       {flavor.icon}
                       <span className="font-sans text-sm uppercase tracking-wider">{flavor.label}</span>
