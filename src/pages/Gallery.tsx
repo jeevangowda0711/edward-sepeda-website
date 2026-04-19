@@ -1,41 +1,75 @@
-import { motion } from 'motion/react';
+import {motion} from 'motion/react';
+import {Image as ImageIcon} from 'lucide-react';
+import {galleryItems} from '../data/gallery';
 
 export default function Gallery() {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="pt-40 pb-24 px-6 min-h-screen bg-surface"
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      transition={{duration: 0.8}}
+      className="pt-28 pb-16 md:pb-24 px-4 sm:px-6 min-h-screen bg-surface"
     >
       <div className="max-w-[1440px] mx-auto">
         <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="font-serif text-5xl md:text-6xl italic leading-tight mb-16 text-center"
+          initial={{y: 20, opacity: 0}}
+          animate={{y: 0, opacity: 1}}
+          transition={{delay: 0.2}}
+          className="font-serif text-4xl sm:text-5xl md:text-6xl italic leading-tight mb-4 text-center text-primary"
         >
           Gallery
         </motion.h1>
+        <p className="text-center text-primary/60 text-sm sm:text-base max-w-2xl mx-auto mb-12 md:mb-16 leading-relaxed">
+          A growing collection of cocktails, events, and atmosphere. New photography and films will
+          appear here as they are produced.
+        </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {Array.from({ length: 9 }).map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 * i + 0.3 }}
-              className="aspect-square bg-surface-container rounded-xl border border-outline-variant/15 flex items-center justify-center group hover:border-primary/20 transition-colors duration-500"
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 list-none p-0 m-0">
+          {galleryItems.map((item, i) => (
+            <motion.li
+              key={item.id}
+              initial={{y: 24, opacity: 0}}
+              animate={{y: 0, opacity: 1}}
+              transition={{delay: 0.08 * i + 0.15}}
+              className="min-w-0"
             >
-              <div className="flex flex-col items-center gap-3 text-primary/30 group-hover:text-primary/50 transition-colors duration-500">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
-                </svg>
-                <span className="text-xs uppercase tracking-[0.2em] font-sans">Coming Soon</span>
-              </div>
-            </motion.div>
+              {item.kind === 'placeholder' ? (
+                <div className="aspect-square bg-surface-container rounded-xl border border-outline-variant/15 flex flex-col items-center justify-center gap-3 p-6 text-center">
+                  <ImageIcon aria-hidden className="w-10 h-10 text-primary/25" strokeWidth={1.25} />
+                  <span className="text-xs uppercase tracking-[0.2em] font-sans text-primary/45">
+                    Reserved for upcoming work
+                  </span>
+                </div>
+              ) : item.kind === 'image' ? (
+                <figure className="m-0 flex flex-col rounded-xl overflow-hidden border border-outline-variant/15 bg-surface-container shadow-sm">
+                  <div className="aspect-square relative w-full bg-surface-high">
+                    <img
+                      alt={item.alt}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                      src={item.src}
+                    />
+                  </div>
+                  {item.caption ? (
+                    <figcaption className="px-3 py-2 text-xs text-primary/55 text-center border-t border-outline-variant/10">
+                      {item.caption}
+                    </figcaption>
+                  ) : null}
+                </figure>
+              ) : (
+                <div className="aspect-square rounded-xl overflow-hidden border border-outline-variant/15 bg-black shadow-sm">
+                  <iframe
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                    src={`https://www.youtube.com/embed/${item.videoId}`}
+                    title={item.title}
+                  />
+                </div>
+              )}
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </motion.div>
   );

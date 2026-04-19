@@ -1,120 +1,222 @@
-import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
-import { User } from 'lucide-react';
+import type {FormEvent} from 'react';
+import {motion} from 'motion/react';
+import {User} from 'lucide-react';
+import {CONTACT_EMAIL, SITE_OWNER, TEASER_VIDEO_ID} from '../constants';
 
 export default function Home() {
+  function handleInquirySubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const interest = String(data.get('interest') ?? '').trim();
+    const subject = encodeURIComponent(
+      name ? `Inquiry from ${name} — Mixed Meaning` : 'Inquiry — Mixed Meaning',
+    );
+    const lines = [
+      name && `Name: ${name}`,
+      email && `Email: ${email}`,
+      interest && `Interest: ${interest}`,
+      '',
+      '(Written via mixedmeaning.com contact form)',
+    ].filter(Boolean);
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      transition={{duration: 0.8}}
     >
-      {/* Hero Section */}
-      <section className="py-32 flex flex-col items-center justify-center min-h-[70vh] bg-surface-low">
-        <h1 className="font-serif text-5xl md:text-7xl italic mb-16 text-primary tracking-[0.2em] uppercase">Mixed Meaning</h1>
+      <section className="pt-28 pb-16 md:py-24 lg:py-32 flex flex-col items-center justify-center min-h-[55vh] md:min-h-[65vh] bg-surface-low px-4 sm:px-6">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl italic mb-10 md:mb-16 text-primary tracking-[0.15em] sm:tracking-[0.2em] uppercase text-center px-2">
+          Mixed Meaning
+        </h1>
 
-        <div className="w-full max-w-4xl px-6 md:px-0">
-          <div className="aspect-video bg-surface-container rounded-xl flex items-center justify-center border border-outline-variant/20 relative overflow-hidden group cursor-pointer shadow-sm">
-            <div className="absolute inset-0 bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors duration-500">
-              <div className="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center text-white shadow-lg backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
-                <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-            </div>
-            <span className="absolute top-6 left-6 text-sm tracking-[0.2em] uppercase font-bold text-primary/70">Teaser...</span>
+        <div className="w-full max-w-4xl px-2 sm:px-4 md:px-0">
+          <div className="aspect-video rounded-xl overflow-hidden border border-outline-variant/20 shadow-sm bg-black">
+            <iframe
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="h-full w-full"
+              src={`https://www.youtube.com/embed/${TEASER_VIDEO_ID}`}
+              title="Mixed Meaning teaser video"
+            />
           </div>
+          <p className="mt-4 text-center text-xs uppercase tracking-[0.2em] text-primary/50">
+            Teaser film
+          </p>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-32 bg-surface">
-        <div className="max-w-[1440px] mx-auto px-12 grid grid-cols-1 md:grid-cols-12 gap-24 items-center">
-          <div className="md:col-span-5 relative">
+      <section className="py-16 md:py-24 lg:py-32 bg-surface">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-center">
+          <div className="md:col-span-5 relative mx-auto w-full max-w-md md:max-w-none">
             <div className="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg">
               <img
-                alt="Edward Sepeda"
+                alt={`${SITE_OWNER}, owner and curator of Mixed Meaning`}
                 className="w-full h-full object-cover"
-                src="/Screenshot 2026-03-22 at 12.51.36 PM.png"
+                decoding="async"
+                src="/edward-sepeda-portrait.png"
               />
             </div>
-            <div className="absolute -right-8 top-1/2 bg-secondary-container text-primary px-6 py-3 rounded-full shadow-sm flex items-center gap-2">
-              <User size={16} />
-              <span className="text-xs uppercase tracking-widest font-bold">The Creator</span>
+            <div className="absolute right-4 md:-right-8 top-1/2 z-10 -translate-y-1/2 bg-secondary-container text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-sm flex items-center gap-2 max-w-[calc(100%-2rem)]">
+              <User aria-hidden size={16} />
+              <span className="text-[10px] sm:text-xs uppercase tracking-widest font-bold whitespace-nowrap">
+                Owner &amp; Curator
+              </span>
             </div>
           </div>
-          <div className="md:col-span-7 flex flex-col gap-12">
-            <h2 className="font-serif text-5xl md:text-6xl text-primary leading-tight">
-              Edward <br />Sepeda
-            </h2>
-            <div className="max-w-xl flex flex-col gap-6">
-              <p className="text-primary/70 text-lg leading-relaxed">
-                Cocktail maker, creator, and teacher. Curating rare spirits and sensory precision for private events and culinary consultation.
+          <div className="md:col-span-7 flex flex-col gap-8 md:gap-12 text-center md:text-left">
+            <div>
+              <p className="text-xs uppercase tracking-[0.25em] text-primary/45 mb-3">{SITE_OWNER}</p>
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-primary leading-tight">
+                Edward <br className="hidden sm:block" />
+                Sepeda
+              </h2>
+            </div>
+            <div className="max-w-xl mx-auto md:mx-0 flex flex-col gap-6">
+              <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
+                Cocktail maker, creator, and teacher—curating rare spirits and sensory precision for
+                private events, classes, and restaurant consultation across Chicago and beyond.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mixed Meaning Section */}
-      <section className="py-32 bg-surface-low">
-        <div className="max-w-[1440px] mx-auto px-12">
+      <section className="py-16 md:py-24 lg:py-32 bg-surface-low">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="max-w-2xl">
-            <h2 className="font-serif text-4xl md:text-5xl italic mb-8 text-primary">Mixed Meaning...</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl italic mb-6 md:mb-8 text-primary">
+              Mixed Meaning
+            </h2>
             <div className="space-y-6">
-              <p className="text-primary/70 text-lg leading-relaxed">
-                More than just a drink, it's an experience that challenges expectations. We blend traditional techniques with avant-garde concepts to create moments of genuine connection and sensory discovery.
+              <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
+                Mixed Meaning is an invitation to slow down and taste with intention—where classic
+                technique meets playful experimentation, and every glass holds a deliberate story.
+              </p>
+              <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
+                Whether it is an intimate gathering or a hands-on masterclass, the goal is the same:
+                genuine connection and discovery in every sip.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact & Booking Section */}
-      <section id="contact" className="py-32 bg-surface overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-12 grid grid-cols-1 md:grid-cols-2 gap-24">
-          <div className="flex flex-col justify-center">
-            <h2 className="font-serif text-5xl md:text-6xl mb-12 italic">Let us curate <br />your evening.</h2>
+      <section id="contact" className="py-16 md:py-24 lg:py-32 bg-surface overflow-hidden scroll-mt-28">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+          <div className="flex flex-col justify-center text-center lg:text-left">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl mb-8 md:mb-12 italic">
+              Let us curate <br />
+              your evening.
+            </h2>
             <div className="flex flex-col gap-10">
               <div>
-                <span className="text-xs uppercase tracking-[0.3em] text-primary/40 block mb-4">Studio</span>
-                <p className="text-2xl font-light">Edwards Domain, <br />2513 W Le Moyne St, Chicago, IL 60622</p>
+                <span className="text-xs uppercase tracking-[0.3em] text-primary/40 block mb-4">
+                  Studio
+                </span>
+                <p className="text-xl sm:text-2xl font-light leading-snug">
+                  Edward&apos;s Domain,
+                  <br />
+                  2513 W Le Moyne St, Chicago, IL 60622
+                </p>
               </div>
               <div>
-                <span className="text-xs uppercase tracking-[0.3em] text-primary/40 block mb-4">Inquiries</span>
-                <p className="text-2xl font-light editorial-underline inline-block">hello@mixedmeaning.com</p>
+                <span className="text-xs uppercase tracking-[0.3em] text-primary/40 block mb-4">
+                  Inquiries
+                </span>
+                <a
+                  className="text-xl sm:text-2xl font-light editorial-underline inline-block text-primary hover:text-primary-container transition-colors"
+                  href={`mailto:${CONTACT_EMAIL}`}
+                >
+                  {CONTACT_EMAIL}
+                </a>
               </div>
-              <div className="flex gap-8 pt-4">
-                <a className="text-primary/60 hover:text-primary transition-colors" href="https://www.instagram.com/yumyuckers_ent/" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a className="text-primary/60 hover:text-primary transition-colors" href="#">Journal</a>
+              <div className="flex justify-center lg:justify-start gap-8 pt-2">
+                <a
+                  className="text-primary/60 hover:text-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  href="https://www.instagram.com/yumyuckers_ent/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Instagram
+                </a>
               </div>
             </div>
           </div>
-          <div className="bg-surface-container p-12 md:p-16 rounded-lg">
-            <form className="flex flex-col gap-12" onSubmit={(e) => e.preventDefault()}>
+          <div className="bg-surface-container p-8 sm:p-12 md:p-16 rounded-lg">
+            <form className="flex flex-col gap-10 md:gap-12" noValidate onSubmit={handleInquirySubmit}>
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50">Full Name</label>
+                <label
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50"
+                  htmlFor="inquiry-name"
+                >
+                  Full Name
+                </label>
                 <input
-                  className="bg-transparent border-0 border-b border-outline-variant/40 py-4 focus:ring-0 focus:border-primary transition-all duration-300 font-sans text-xl placeholder:text-primary/20"
-                  placeholder="Gideon Sterling"
+                  autoComplete="name"
+                  className="bg-transparent border-0 border-b border-outline-variant/40 py-4 focus:ring-0 focus:border-primary transition-all duration-300 font-sans text-lg sm:text-xl placeholder:text-primary/20"
+                  id="inquiry-name"
+                  name="name"
+                  placeholder="Your name"
+                  required
                   type="text"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50">Email Address</label>
+                <label
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50"
+                  htmlFor="inquiry-email"
+                >
+                  Email Address
+                </label>
                 <input
-                  className="bg-transparent border-0 border-b border-outline-variant/40 py-4 focus:ring-0 focus:border-primary transition-all duration-300 font-sans text-xl placeholder:text-primary/20"
-                  placeholder="gideon@sterling.com"
+                  autoComplete="email"
+                  className="bg-transparent border-0 border-b border-outline-variant/40 py-4 focus:ring-0 focus:border-primary transition-all duration-300 font-sans text-lg sm:text-xl placeholder:text-primary/20"
+                  id="inquiry-email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
                   type="email"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50">Experience Interest</label>
-                <select className="bg-transparent border-0 border-b border-outline-variant/40 py-4 focus:ring-0 focus:border-primary transition-all duration-300 font-sans text-xl text-primary/40 appearance-none cursor-pointer">
-                  <option>Mixology Class</option>
+                <label
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50"
+                  htmlFor="inquiry-interest"
+                >
+                  Experience interest
+                </label>
+                <select
+                  className="bg-transparent border-0 border-b border-outline-variant/40 py-4 focus:ring-0 focus:border-primary transition-all duration-300 font-sans text-lg sm:text-xl text-primary appearance-none cursor-pointer"
+                  defaultValue=""
+                  id="inquiry-interest"
+                  name="interest"
+                  required
+                >
+                  <option disabled value="">
+                    Select an option…
+                  </option>
+                  <option value="Mixology class">Mixology class</option>
+                  <option value="Private event / bar service">Private event / bar service</option>
+                  <option value="Restaurant consulting">Restaurant consulting</option>
+                  <option value="Something else">Something else</option>
                 </select>
               </div>
-              <button className="bg-primary text-white py-6 rounded-lg font-sans tracking-widest uppercase text-sm mt-8 hover:bg-primary-container transition-all">
-                Send Request
+              <button
+                className="bg-primary text-white py-5 sm:py-6 rounded-lg font-sans tracking-widest uppercase text-sm mt-4 hover:bg-primary-container transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                type="submit"
+              >
+                Send request
               </button>
+              <p className="text-[11px] text-primary/45 leading-relaxed">
+                Opens your email app to send a message to {CONTACT_EMAIL}. You can edit before sending.
+              </p>
             </form>
           </div>
         </div>
