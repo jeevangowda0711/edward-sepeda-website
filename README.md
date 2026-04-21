@@ -78,6 +78,8 @@ npm run build
 
 Deploy `dist/` to Netlify, Vercel, Cloudflare Pages, S3+CloudFront, or any static host; configure SPA fallback so client routes (`/booking`, `/gallery`) resolve to `index.html`.
 
+For Cloudflare Pages with Git integration, every push to the production branch (`main`) triggers an automatic deployment.
+
 ## License / rights
 
 © Edward Sepeda / Mixed Meaning — site content belongs to the client; keep repository access appropriate for production deployment.
