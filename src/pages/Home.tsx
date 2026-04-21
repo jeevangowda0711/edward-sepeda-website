@@ -63,12 +63,12 @@ export default function Home() {
                 src="/edward-sepeda-portrait.png"
               />
             </div>
-            <div className="absolute right-4 md:-right-8 top-1/2 z-10 -translate-y-1/2 bg-secondary-container text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-sm flex items-center gap-2 max-w-[calc(100%-2rem)]">
+            {/* <div className="absolute right-4 md:-right-8 top-1/2 z-10 -translate-y-1/2 bg-secondary-container text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-sm flex items-center gap-2 max-w-[calc(100%-2rem)]">
               <User aria-hidden size={16} />
               <span className="text-[10px] sm:text-xs uppercase tracking-widest font-bold whitespace-nowrap">
                 Owner &amp; Curator
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="md:col-span-7 flex flex-col gap-8 md:gap-12 text-center md:text-left">
             <div>
