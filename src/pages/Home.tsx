@@ -80,8 +80,7 @@ export default function Home() {
             </div>
             <div className="max-w-xl mx-auto md:mx-0 flex flex-col gap-6">
               <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
-                Cocktail maker, creator, and teacher—curating rare spirits and sensory precision for
-                private events, classes, and restaurant consultation across Chicago and beyond.
+              Edward Sepeda found a love of cocktail bartending some dozen or so years ago and has since been honing his craft in bars & restaurants across the US and abroad.
               </p>
             </div>
           </div>
@@ -96,13 +95,12 @@ export default function Home() {
             </h2>
             <div className="space-y-6">
               <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
-                Mixed Meaning is an invitation to slow down and taste with intention—where classic
-                technique meets playful experimentation, and every glass holds a deliberate story.
+              Mixed Meaning aims to demystify the alchemy you see behind the bar and provide you with the skillset to make all manner of cocktails at home.
               </p>
-              <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
+              {/* <p className="text-primary/70 text-base sm:text-lg leading-relaxed">
                 Whether it is an intimate gathering or a hands-on masterclass, the goal is the same:
                 genuine connection and discovery in every sip.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -116,7 +114,7 @@ export default function Home() {
               your evening.
             </h2>
             <div className="flex flex-col gap-10">
-              <div>
+              {/* <div>
                 <span className="text-xs uppercase tracking-[0.3em] text-primary/40 block mb-4">
                   Studio
                 </span>
@@ -125,7 +123,7 @@ export default function Home() {
                   <br />
                   2513 W Le Moyne St, Chicago, IL 60622
                 </p>
-              </div>
+              </div> */}
               <div>
                 <span className="text-xs uppercase tracking-[0.3em] text-primary/40 block mb-4">
                   Inquiries
